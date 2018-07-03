@@ -5,27 +5,28 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var articleRouter = require('./routes/article');
+var overflowRouter = require('./routes/question');
 const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config()
 
 
-//==================== database ================
+//===================== mongoose =========
+require('dotenv').config()
 
-// conecting database
+// mongoose.connect('mongodb:ecommerce:BHGFDSAQ1@ds237660.mlab.com:37660/book-library-mongo')
+
 const mongoUser = process.env.MONGO_USER
 const mongoPass = process.env.MONGO_PASS
 
-// mongoose.connect("mongodb://localhost:27017");
-mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@ds219641.mlab.com:19641/twitter_clone`)
+mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@ds237660.mlab.com:37660/book-library-mongo`)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log('connected to db')
 });
 
-//==================== database =================
+//===================== mongoose =========
 
 var app = express();
 
@@ -44,7 +45,7 @@ app.use(cors())
 //=========== router ================
 
 app.use('/', indexRouter);
-app.use('/home', articleRouter);
+app.use('/home', overflowRouter);
 
 //=========== router ================
 

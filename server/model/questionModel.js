@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let articleSchema = new Schema({
+let overflowSchema = new Schema({
   title: {
     type: String
   },
-  article: {
+  content: {
     type: String
   }
 }, {
@@ -16,6 +16,6 @@ let articleSchema = new Schema({
 
 
 
-const Article = mongoose.model("Articles", articleSchema);
+const Overflow = mongoose.model("questions", overflowSchema);
 
-module.exports = Article;
+module.exports = Overflow;

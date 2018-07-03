@@ -66,6 +66,6 @@ userSchema.statics.checkEmailDuplication = function(email) {
     });
 };
 
-const User = mongoose.model("User_blog", userSchema);
+const User = mongoose.model("User_overflow", userSchema);
 
 module.exports = User;
