@@ -114,7 +114,7 @@ export default {
   /* border: 5px solid black; */
   border-radius: 5px;
   margin-top: 10px;
-  background-image: url('http://static.wixstatic.com/media/ac65a6e34704466bae682286d73b77ad.jpg_256');
+  background-color: blanchedalmond
 }
 
 #itu {

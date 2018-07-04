@@ -1,28 +1,12 @@
 <template>
   <div id="ciat" class="row">
-    <div id="nah" class=" col s2">
-      <h6>
-        <a href="/"> Home</a>
-      </h6>
-    </div>
-    <div id="nah" class=" col s2">
-      <h6>
-        <a>About</a>
-      </h6>
-    </div>
-    <div id="nah" class=" col s2">
-      <h6>
-        <a>profile</a>
-      </h6>
-    </div>
-    <div id="nah" class=" col s2">
-      <h6>
-        <a>Contact</a>
-      </h6>
-    </div>
-    <div id="nah" class=" col s3">
+
+    <div class="col s12 ">
+
+
+    <div id="nah" class=" col s6 right">
       <div id="nahi" class="col s3">
-        <button onclick="document.getElementById('id02').style.display='block'" class="waves-effect waves-light btn-small">Post</button>
+        <button onclick="document.getElementById('id02').style.display='block'" class="waves-effect waves-light btn-small">Ask Question</button>
       </div>
       <div id="nahi" class="col s4">
         <button onclick="document.getElementById('id01').style.display='block'" class="waves-effect waves-light btn-small">Login</button>
@@ -31,6 +15,8 @@
         <button @click="logout()" class="waves-effect waves-light btn-small">Logout</button>
       </div>
     </div>
+    </div>
+
 
     <div class="navbar">
       <!-- ============================================ -->
@@ -80,7 +66,7 @@
                 <input v-model="title" type="text" placeholder="Title..." name="name">
 
                 <label for="psw">
-                  <b>Article</b>
+                  <b>Any Question?</b>
                 </label>
                 <textarea v-model="article" name="" id="" cols="60" rows="10"> </textarea>
 

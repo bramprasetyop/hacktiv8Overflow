@@ -1,32 +1,18 @@
 <template>
   <div>
-    <div class="col s12" id="oit">
+<a >    <div class="col s12" id="oit">
 
-      <div class="col s5">
-        <div id="oii">
-          <img id="itu" src="https://scontent-sin6-2.xx.fbcdn.net/v/t1.0-9/10616439_10201985757480330_8973849717563076250_n.jpg?_nc_cat=0&_nc_eui2=AeE0txLW7RkfgZeWyFftSDPJbvX8mji5U4p5ozdkSWYbKKKDkqVBPabH73GdsHZN3qDVPenBhIawezobfUhXTHA3zu8I8_UM91m40UMRgej_6w&oh=f3c11d595e45d6af22090853f42bd53e&oe=5BE599FB" class="img-responsive" alt="">
-        </div>
-      </div>
 
-      <div id="rightprofile" class="col s7">
 
-        <h6 id="nama">
-          <b>Bram Prasetyo</b>
-        </h6>
-        <div class="row">
-          <div id="actionprofile" class="col s6">
-            <p>Followers 12.4K</p>
-          </div>
-          <div id="actionprofile" class="col s6">
-            <p> Tweets 1134</p>
-          </div>
-        </div>
-      </div>
+      
 
-    </div>
+        <h1 id="addQ" align="center">Stuck <br> Overflow</h1>
+ 
+
+    </div></a>
     <div id="leftright">
       <h4>
-        <strong>Articles</strong>
+        
       </h4>
       <div v-for="(article,index) in articles" :key="index">
         <h6>
@@ -79,3 +65,9 @@ export default {
   }
 }
 </script>
+
+<style>
+#addQ{
+  margin: 2px 2px 2px 2px;
+}
+</style>

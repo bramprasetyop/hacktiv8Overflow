@@ -1,5 +1,5 @@
 <template>
-  <img id="gambar" src="https://i0.wp.com/vatih.com/wp-content/uploads/2018/05/makanan-yang-disuka.jpg?fit=1920%2C1080&ssl=1" alt="">
+<div class="nav"></div>
 </template>
 
 <script>
@@ -19,9 +19,13 @@ export default {
 #logo {
   border: 1px solid black;
 }
-img {
-  max-width: 100%;
-  max-height: 100%;
+.nav {
+    /* border: 1px solid black; */
+  margin-top: -60px;
+
+  width: 100%;
+  height: 20px;
+  background-color: rgb(44, 41, 41)
 }
 #logout {
   margin-right: 15px;
@@ -33,7 +37,6 @@ img {
 
 #gambar{
   /* border: 1px solid black; */
-  margin-top: -60px;
 }
 </style>
 
