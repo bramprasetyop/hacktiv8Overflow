@@ -89,7 +89,7 @@ export default {
 
           // console.log(token)
           // localStorage.setItem('token', token)
-          console.log(result);
+          // console.log(result);
           
           swal({
             text: 'Login Success',
@@ -107,7 +107,7 @@ export default {
             .then(response => {
               // console.log(response.data.token);
               // this.$router.push('/login')
-              console.log('masuk lah gan', response.data.token)
+              // console.log('masuk lah gan', response.data.token)
 
               localStorage.setItem('token', response.data.token)
               this.$router.push('/')

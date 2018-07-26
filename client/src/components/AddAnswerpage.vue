@@ -49,7 +49,7 @@ export default {
         })
         .then(response => {
 
-          console.log(response)
+          // console.log(response)
 
           this.$router.push(`/answers/${this.$route.params.id}`)
           this.question = ''

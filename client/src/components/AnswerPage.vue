@@ -15,8 +15,8 @@
           <div class="col s4 right">
 
             <div id="oyyy" class="col s6 left">
-              
-                <button @click="checkUser" class="waves-effect waves-light btn-small">Add Answer</button>
+
+              <button @click="checkUser" class="waves-effect waves-light btn-small">Add Answer</button>
 
             </div>
 
@@ -30,13 +30,13 @@
 
               <p v-html="answer.content" style="text-align:left">{{answer.content}}</p>
             </div>
-            <div class="card-action">
-              <a>
+            <div class="card-action black">
+              <a @click="upVote(answer._id)">
                 <i class="material-icons">thumb_up</i>
-                0</a>
-              <a>
+                {{answer.votesUp.length}}</a>
+              <a @click="downVote(answer._id)">
                 <i class="material-icons">thumb_down</i>
-                0</a>
+                {{answer.votesDown.length}}</a>
             </div>
           </div>
         </div>
@@ -71,6 +71,8 @@ export default {
       axios
         .get(`http://localhost:3000/home/questions/${this.$route.params.id}`)
         .then(response => {
+          // console.log('=============',response.data.Overflow);
+
           // console.log(response.data.Overflow.content)
           this.question = response.data.Overflow
         })
@@ -79,7 +81,7 @@ export default {
       axios
         .get(`http://localhost:3000/answers/${this.$route.params.id}`)
         .then(response => {
-          console.log(response.data.Answer)
+          console.log('xxxxxxxxxxxxxxxxxxxxxx', response.data.Answer)
           this.answers = response.data.Answer
         })
     },
@@ -92,6 +94,60 @@ export default {
       } else {
         this.$router.push(`/addanswer/${this.question._id}`)
       }
+    },
+    upVote(id) {
+      axios
+        .put(
+          `http://localhost:3000/answers/${id}`,
+          {},
+          {
+            headers: {
+              token: localStorage.getItem('token')
+            }
+          }
+        )
+        .then(response => {
+          swal({
+            text: 'Thank you',
+            icon: 'success'
+          })
+          console.log('ini masuk upvote', response)
+          this.$router.push(`/answers/${this.$route.params.id}`)
+          this.getAnswer()
+        })
+        .catch(err => {
+          swal({
+            text: 'You must login first',
+            icon: 'error'
+          })
+        })
+    },
+    downVote(id) {
+      axios
+        .put(
+          `http://localhost:3000/answers/down/${id}`,
+          {},
+          {
+            headers: {
+              token: localStorage.getItem('token')
+            }
+          }
+        )
+        .then(response => {
+          swal({
+            text: 'Thank you',
+            icon: 'success'
+          })
+          console.log('ini masuk upvote', response)
+          this.$router.push(`/answers/${this.$route.params.id}`)
+          this.getAnswer()
+        })
+        .catch(err => {
+          swal({
+            text: 'You must login first',
+            icon: 'error'
+          })
+        })
     }
   }
 }

@@ -62,35 +62,8 @@ export default {
 
       this.$router.push('/')
       this.getAll()
-    },
-    post() {
-      let obj = {
-        title: this.title,
-        article: this.article
-      }
-
-      let token = localStorage.getItem('token')
-      axios
-        .post('http://localhost:3000/home', obj, {
-          headers: {
-            token: token
-          }
-        })
-        .then(response => {
-          // console.log(response);
-          swal({
-            text: 'Add Article Success',
-            icon: 'success'
-          })
-          this.$router.push('/')
-        })
-        .catch(err => {
-          swal({
-            text: 'Something Wrong',
-            icon: 'error'
-          })
-        })
     }
+
   }
 }
 </script>

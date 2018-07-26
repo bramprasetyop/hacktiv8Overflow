@@ -13,15 +13,15 @@
           </div>
 
         </div>
-        <div class="col s10 m10 center">
+        <div id="bang" class="col s10 m10 center">
           <div v-for="question  in questions" :key="question" class="card white  ">
             <div class="card-content black-text">
               <span style="text-align:left" class="card-title">{{question.title}}</span>
               <p v-html="question.content" style="text-align:left">{{question.content}}</p>
             </div>
-            <div class="card-action">
+            <div class="card-action black">
               <router-link :to="`/answers/${question._id}`">
-                <a>Answers</a>
+                <a >Answers</a>
               </router-link>
             </div>
           </div>

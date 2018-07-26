@@ -7,7 +7,7 @@
 
       <div class="row">
 
-        <div id="left" class="col s12 m4 l3">
+        <div id="left" class="col s12 m3 l3">
 
           <div id="boxleft" class="col s12">
             <LeftBox/>
@@ -17,7 +17,7 @@
 
         <div id="centerbody" class="col s12 m8 l8">
 
-          <Articles/>
+          <Body/>
         </div>
 
       </div>
@@ -34,7 +34,7 @@ import RightBox from '@/components/RightBox.vue'
 import SecondNavbar from '@/components/SecondNavbar.vue'
 import axios from 'axios'
 import Footer from '@/components/Footer.vue'
-import Articles from '@/components/Article.vue'
+import Body from '@/components/Body.vue'
 
 export default {
   name: 'details',
@@ -45,7 +45,7 @@ export default {
     RightBox,
     SecondNavbar,
     Footer,
-    Articles
+    Body
   }
 }
 </script>

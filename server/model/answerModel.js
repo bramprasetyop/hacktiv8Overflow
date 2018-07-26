@@ -4,7 +4,8 @@ const ObjectId = Schema.Types.ObjectId
 
 const answerSchema = new Schema({
     content: String,
-    votes:[],
+    votesUp:[],
+    votesDown:[],
     questionId: {
         type: ObjectId,
         ref: "questions"

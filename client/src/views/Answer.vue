@@ -2,7 +2,7 @@
   <div class="details">
     <div>
      
-      <navbar/>
+      <SecondNavbar/>
 
 
       <div class="row">
@@ -35,7 +35,7 @@ import RightBox from '@/components/RightBox.vue'
 import SecondNavbar from '@/components/SecondNavbar.vue'
 import axios from 'axios'
 import Footer from '@/components/Footer.vue'
-import Articles from '@/components/Article.vue'
+
 
 export default {
   name: 'answerpage',
@@ -45,8 +45,8 @@ export default {
     LeftBox,
     RightBox,
     SecondNavbar,
-    Footer,
-    Articles
+    Footer
+  
   }
 }
 </script>

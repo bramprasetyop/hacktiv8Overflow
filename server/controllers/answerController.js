@@ -4,16 +4,17 @@ const jwt = require("jsonwebtoken")
 
 function newAnswer(req, res) {
 
-  var decoded = jwt.verify(req.headers.token,process.env.SECRET_KEY)
+  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
 
   let addAnswer = {
 
     content: req.body.content,
-    votes:[],
-    userId:decoded.id,
+    votesUp: [],
+    votesDown: [],
+    userId: decoded.id,
     questionId: req.body.questionId
-    
-    
+
+
   }
 
   Answer.create(addAnswer)
@@ -62,11 +63,55 @@ function deleteAnswer(req, res) {
       })
     })
 }
+
+
 function getOneAnswer(req, res) {
-  Answer.find({questionId:req.params.id})
+  Answer.find({
+      questionId: req.params.id
+    })
     .then(Answer => {
       res.status(200).json({
         message: 'get one Answer',
+        Answer
+      })
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'failed',
+        err
+      })
+    })
+}
+
+function editUpOneAnswer(req, res) {
+  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+
+  Answer.findById(req.params.id)
+    .then(Answer => {
+      Answer.votesUp.push(decoded.id)
+      Answer.save()
+      res.status(200).json({
+        message: 'update Up vote',
+        Answer
+      })
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'failed',
+        err
+      })
+    })
+}
+
+function editDownOneAnswer(req, res) {
+  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+
+  Answer.findById(req.params.id)
+    .then(Answer => {
+      Answer.votesDown.push(decoded.id)
+      Answer.save()
+      res.status(200).json({
+        message: 'update down Vote',
         Answer
       })
     })
@@ -86,5 +131,7 @@ module.exports = {
   newAnswer,
   getAnswer,
   deleteAnswer,
-  getOneAnswer
+  getOneAnswer,
+  editUpOneAnswer,
+  editDownOneAnswer
 };

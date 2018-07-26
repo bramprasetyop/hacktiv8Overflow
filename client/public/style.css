@@ -30,8 +30,10 @@ body {
   margin-top: 15px;
 }
 
+
 #left {
   margin-top: 15px;
+  /* border: 1px solid black; */
 }
 
 #boxright {
@@ -278,8 +280,6 @@ a:hover {
 #nama {
   color: whitesmoke;
 }
-
-
 
 .contentt {
   width: 100%;
