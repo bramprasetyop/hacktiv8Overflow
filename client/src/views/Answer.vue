@@ -1,12 +1,9 @@
 <template>
-  <div class="home">
+  <div class="details">
     <div>
-      <Navbar/>
+     
+      <navbar/>
 
-      <div id="judulnya" class="col s12">
-
-        <SecondNavbar/>
-      </div>
 
       <div class="row">
 
@@ -18,18 +15,9 @@
 
         </div>
 
-        <div id="centerbody" class="col s12 m8 l6">
+        <div id="centerbody" class="col s12 m8 l8">
 
-          <Articles/>
-        </div>
-
-        <div id="right" class="col s12 m4 l3">
-          <div id="boxright" class="col s12">
-
-            <RightBox/>
-
-          </div>
-
+          <Answer/>
         </div>
 
       </div>
@@ -40,23 +28,25 @@
 
 
 <script>
-import Articles from '@/components/Article.vue'
-import Navbar from '@/components/navbar.vue'
+import Answer from '@/components/AnswerPage.vue'
+import Navbar from '@/components/Navbar.vue'
 import LeftBox from '@/components/LeftBox.vue'
 import RightBox from '@/components/RightBox.vue'
 import SecondNavbar from '@/components/SecondNavbar.vue'
 import axios from 'axios'
 import Footer from '@/components/Footer.vue'
+import Articles from '@/components/Article.vue'
 
 export default {
-  name: 'home',
+  name: 'answerpage',
   components: {
-    Articles,
+    Answer,
     Navbar,
     LeftBox,
     RightBox,
     SecondNavbar,
-    Footer
+    Footer,
+    Articles
   }
 }
 </script>

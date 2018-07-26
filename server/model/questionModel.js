@@ -1,13 +1,22 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId
 
 let overflowSchema = new Schema({
   title: {
-    type: String
-  },
-  content: {
-    type: String
-  }
+    type:String,
+    unique:true
+},
+content: String,
+votes:[],
+answerId:[{
+    type: ObjectId,
+    ref: "Answer"
+}],
+userId: {
+    type: ObjectId,
+    ref: "User_overflow"
+}
 }, {
   timestamps: true
 });

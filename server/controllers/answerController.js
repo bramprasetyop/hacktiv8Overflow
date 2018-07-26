@@ -1,23 +1,26 @@
-const Overflow = require("../model/questionModel");
+const Answer = require("../model/answerModel");
 const jwt = require("jsonwebtoken")
-function newOverflow(req, res) {
+
+
+function newAnswer(req, res) {
 
   var decoded = jwt.verify(req.headers.token,process.env.SECRET_KEY)
 
-  let addOverflow = {
-    title:req.body.title,
+  let addAnswer = {
+
     content: req.body.content,
     votes:[],
-    answerId:[],
-    userId:decoded.id
+    userId:decoded.id,
+    questionId: req.body.questionId
+    
     
   }
 
-  Overflow.create(addOverflow)
-    .then(Overflow => {
+  Answer.create(addAnswer)
+    .then(Answer => {
       res.status(200).json({
-        message: 'new Overflow added',
-        Overflow
+        message: 'new Answer added',
+        Answer
       })
     })
     .catch(err => {
@@ -28,12 +31,12 @@ function newOverflow(req, res) {
     })
 }
 
-function getOverflow(req, res) {
-  Overflow.find()
-    .then(Overflow => {
+function getAnswer(req, res) {
+  Answer.find()
+    .then(Answer => {
       res.status(200).json({
-        message: 'get Overflow',
-        Overflow
+        message: 'get Answer',
+        Answer
       })
     })
     .catch(err => {
@@ -44,12 +47,12 @@ function getOverflow(req, res) {
     })
 }
 
-function deleteOverflow(req, res) {
-  Overflow.findByIdAndRemove(req.params.id)
-    .then(Overflow => {
+function deleteAnswer(req, res) {
+  Answer.findByIdAndRemove(req.params.id)
+    .then(Answer => {
       res.status(200).json({
-        message: 'delete Overflow',
-        Overflow
+        message: 'delete Answer',
+        Answer
       })
     })
     .catch(err => {
@@ -59,12 +62,12 @@ function deleteOverflow(req, res) {
       })
     })
 }
-function getOneOverflow(req, res) {
-  Overflow.findOne({_id:req.params.id})
-    .then(Overflow => {
+function getOneAnswer(req, res) {
+  Answer.find({questionId:req.params.id})
+    .then(Answer => {
       res.status(200).json({
-        message: 'get one Overflow',
-        Overflow
+        message: 'get one Answer',
+        Answer
       })
     })
     .catch(err => {
@@ -80,8 +83,8 @@ function getOneOverflow(req, res) {
 
 
 module.exports = {
-  newOverflow,
-  getOverflow,
-  deleteOverflow,
-  getOneOverflow
+  newAnswer,
+  getAnswer,
+  deleteAnswer,
+  getOneAnswer
 };

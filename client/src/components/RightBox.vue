@@ -15,8 +15,5 @@ export default {}
 </script>
 
 <style>
-#rightt{
-  height: 500px;
-  border: 1px solid blanchedalmond;
-}
+
 </style>

@@ -4,8 +4,6 @@ const { check, validationResult } = require("express-validator/check");
 var signUpVal = [
   check("username")
     .trim()
-    .isLength({ min: 6 })
-    .matches(/^\w+$/)
     .withMessage("Invalid username"),
   
   check("email")

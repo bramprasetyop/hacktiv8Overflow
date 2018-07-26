@@ -14,6 +14,6 @@ var {
 } = require("../helpers/auth");
 /* GET articlelisting. */
 router.post('/',logincheck, newOverflow).get('/questions', getOverflow)
-  .delete('/questions/delete/:id', deleteOverflow).get('/questions/:id', getOneOverflow)
+  .delete('/questions/:id', deleteOverflow).get('/questions/:id', getOneOverflow)
 
 module.exports = router;

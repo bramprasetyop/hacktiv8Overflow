@@ -6,6 +6,8 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var overflowRouter = require('./routes/question');
+var answerRouter = require('./routes/answer');
+
 const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config()
@@ -19,7 +21,7 @@ require('dotenv').config()
 const mongoUser = process.env.MONGO_USER
 const mongoPass = process.env.MONGO_PASS
 
-mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@ds237660.mlab.com:37660/book-library-mongo`)
+mongoose.connect(`mongodb://${mongoUser}:${mongoPass}@ds247698.mlab.com:47698/photo-editor`)
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
@@ -46,6 +48,8 @@ app.use(cors())
 
 app.use('/', indexRouter);
 app.use('/home', overflowRouter);
+app.use('/', answerRouter);
+
 
 //=========== router ================
 

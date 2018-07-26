@@ -6,28 +6,27 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    articles:[]
+    questions:[],
+    
   },
   mutations: {
-    SET_ARTICLES(state,payload) {
+    SET_QUESTION(state,payload) {
       // console.log("msk mtate");
       
-      state.articles = payload
-    },
-    SET_ARTICLE(state,payload){
-      state.article = payload
+      state.questions = payload
     }
+
   },
   actions: {
     getAll({commit}, payload) {
       axios({
           method: "get",
-          url: "http://localhost:3000/home/articles" 
+          url: "http://localhost:3000/home/questions" 
       })
       .then(({data})=>{
-          // console.log("xxxxxxx",data.Article);
-          payload = data.Article
-          commit("SET_ARTICLES", payload)
+          // console.log("xxxxxxx",data.Overflow);
+          payload = data.Overflow
+          commit("SET_QUESTION", payload)
       })
       .catch(err=>{
           console.log(err.message);        
