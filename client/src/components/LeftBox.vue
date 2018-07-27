@@ -1,7 +1,7 @@
 <template>
   <div>
 
-    <div class="col s12" id="oit">
+    <div class="col s12 m12 l12" id="oit">
 
       <router-link id="homee" to="/">
         <h1 id="addQ" align="center">Stuck <br> Overflow</h1>

@@ -45,11 +45,7 @@ function signUpUser(req, res) {
 
 function loginUser(req, res) {
 
-
   let pass = req.body.password;
-
-
-
 
   User.findOne({
       email: req.body.email
@@ -90,11 +86,14 @@ function loginUser(req, res) {
     });
 }
 
+
+
 function getUser(req, res) {
-  User.find()
+  var decoded = jwt.verify(req.headers.token,process.env.SECRET_KEY)
+  User.findOne({_id:decoded.id})
     .then(users => {
       res.status(200).json({
-        message: 'get tweet',
+        message: 'get One user',
         users
       })
     })

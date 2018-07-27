@@ -1,7 +1,7 @@
 <template>
 
   <div class="row ">
-    <div class="col s2">
+    <div class="col s6 m2 l2">
 
       <router-link :to="`/answers/${$route.params.id}`">
         <button class="waves-effect waves-light btn-small">back</button>
@@ -15,7 +15,7 @@
       <VueEditor v-model="content"> </VueEditor>
     </div>
 
-    <div id="submittt" class="col s3 right">
+    <div id="submittt" class="col s6 m3 l3 right">
       <button @click="addAnswer()" class="waves-effect waves-light btn-small">Submit</button>
     </div>
   </div>

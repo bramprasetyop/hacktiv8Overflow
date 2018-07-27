@@ -27,9 +27,9 @@ export default {
 </script>
 <style scoped>
 .login {
-background-color: rgb(225, 241, 241);
-  background-size: cover;
-  margin-top: -60px;
-  height: 650px;
+background-color: rgb(4, 128, 128);
+  /* background-size: cover; */
+  /* margin-top: -60px;
+  height: 650px; */
 }
 </style>

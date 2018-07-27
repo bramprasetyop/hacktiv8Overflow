@@ -1,31 +1,31 @@
 <template>
 
-  <div class="row ">
+  <div class="row col s12 m12 l12">
 
-    <div id="yaki" class="col s12 m12 l12 center">
+    <div id="yaki" class="col s12 m12 l12 ">
 
-      <div class="input-field col s11">
+      <div class="input-field col s12 m11 l11">
         <i class="material-icons prefix">email</i>
         <input v-model="email" type="text" >
         <label >Email</label>
       </div>
 
-      <div class="input-field col s11">
+      <div class="input-field col s12 m11 l11">
         <i class="material-icons prefix">lock</i>
         <input v-model="password" type="password">
         <label >Password</label>
       </div>
 
-      <div id="itt" class="input-field col s4 left">
+      <div id="itt" class="input-field col s12 m4 l4 left">
         <a @click= "login" class="waves-effect waves-light btn">Login</a>
       </div>
 
-      <div id="itt" class="input-field col s8 left">
+      <div id="itt" class="input-field col s12 m8 l8 left">
         <a @click= "loginFb" id="oyiya" class="fb btn">
           <i class="fa fa-facebook fa-fw"></i> Login with Facebook
         </a>
       </div>
-      <div id="itt" class="input-field col s12 ">
+      <div id="itt" class="input-field col s12 m5 l5  ">
 
         <router-link to="/signup">
           <a style="color:blue" class="waves-effect waves-light">Register Now!</a>

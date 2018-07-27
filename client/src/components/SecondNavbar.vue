@@ -4,15 +4,15 @@
     <navbar/>
     <div id="judulnya" class="col s12 ">
 
-      <div id="nah" class=" col s4 right">
+      <div id="nah" class=" col s12 m4 l4 right">
 
-        <div v-if="post" id="nahii" class="col s4 right">
+        <div v-if="post" id="nahii" class="col s6 m4 l4 right">
           <router-link to="/login">
             <button class="waves-effect waves-light btn-small">Login</button>
           </router-link>
         </div>
 
-        <div v-else id="nahi" class="col s4 right">
+        <div v-else id="nahi" class="col s6 m4 l4 right">
           <a href>
             <button @click="logout()" class="waves-effect waves-light btn-small">Logout</button>
           </a>

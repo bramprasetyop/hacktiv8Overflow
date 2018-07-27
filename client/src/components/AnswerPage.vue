@@ -8,13 +8,13 @@
 
           <div class="col s8 left">
             <span>
-              <h4>{{question.title}}</h4>
+              <h4 id="titlequestion" style="color:white">{{question.title}}</h4>
             </span>
           </div>
 
-          <div class="col s4 right">
+          <div class="col s12 m4 l4 right">
 
-            <div id="oyyy" class="col s6 left">
+            <div id="oyyy" class="col s8 m6 l6 center">
 
               <button @click="checkUser" class="waves-effect waves-light btn-small">Add Answer</button>
 
@@ -30,13 +30,15 @@
 
               <p v-html="answer.content" style="text-align:left">{{answer.content}}</p>
             </div>
-            <div class="card-action black">
-              <a @click="upVote(answer._id)">
+            <div id="bottom-card" class="card-action black">
+              <a @click="upVote(answer._id,answer.userId,user._id)">
                 <i class="material-icons">thumb_up</i>
                 {{answer.votesUp.length}}</a>
-              <a @click="downVote(answer._id)">
+              <a @click="downVote(answer._id,answer.userId,user._id)">
                 <i class="material-icons">thumb_down</i>
                 {{answer.votesDown.length}}</a>
+              <a v-if="answer.userId === user._id">Edit</a>
+              <a v-if="answer.userId === user._id">Delete</a>
             </div>
           </div>
         </div>
@@ -47,6 +49,8 @@
 </template>
 <script>
 import axios from 'axios'
+
+import { mapActions, mapState } from 'vuex'
 
 export default {
   data() {
@@ -65,8 +69,12 @@ export default {
       this.posting = false
     }
   },
+  computed: {
+    ...mapState(['questions', 'user'])
+  },
 
   methods: {
+    ...mapActions(['getAll', 'getOneUser']),
     getOneQuestion() {
       axios
         .get(`http://localhost:3000/home/questions/${this.$route.params.id}`)
@@ -95,59 +103,73 @@ export default {
         this.$router.push(`/addanswer/${this.question._id}`)
       }
     },
-    upVote(id) {
-      axios
-        .put(
-          `http://localhost:3000/answers/${id}`,
-          {},
-          {
-            headers: {
-              token: localStorage.getItem('token')
+    upVote(idAnswer, userID, idUser) {
+      if (userID === idUser) {
+        swal({
+          text: 'cannot vote your answer',
+          icon: 'error'
+        })
+      } else {
+        axios
+          .put(
+            `http://localhost:3000/answers/${idAnswer}`,
+            {},
+            {
+              headers: {
+                token: localStorage.getItem('token')
+              }
             }
-          }
-        )
-        .then(response => {
-          swal({
-            text: 'Thank you',
-            icon: 'success'
+          )
+          .then(response => {
+            swal({
+              text: 'Thank you',
+              icon: 'success'
+            })
+            console.log('ini masuk upvote', response)
+            this.$router.push(`/answers/${this.$route.params.id}`)
+            this.getAnswer()
           })
-          console.log('ini masuk upvote', response)
-          this.$router.push(`/answers/${this.$route.params.id}`)
-          this.getAnswer()
-        })
-        .catch(err => {
-          swal({
-            text: 'You must login first',
-            icon: 'error'
+          .catch(err => {
+            swal({
+              text: 'You must login first',
+              icon: 'error'
+            })
           })
-        })
+      }
     },
-    downVote(id) {
-      axios
-        .put(
-          `http://localhost:3000/answers/down/${id}`,
-          {},
-          {
-            headers: {
-              token: localStorage.getItem('token')
+    downVote(idAnswer, userID, idUser) {
+      if (userID === idUser) {
+        swal({
+          text: 'cannot vote your answer',
+          icon: 'error'
+        })
+      } else {
+        axios
+          .put(
+            `http://localhost:3000/answers/down/${idAnswer}`,
+            {},
+            {
+              headers: {
+                token: localStorage.getItem('token')
+              }
             }
-          }
-        )
-        .then(response => {
-          swal({
-            text: 'Thank you',
-            icon: 'success'
+          )
+          .then(response => {
+            swal({
+              text: 'Thank you',
+              icon: 'success'
+            })
+            console.log('ini masuk upvote', response)
+            this.$router.push(`/answers/${this.$route.params.id}`)
+            this.getAnswer()
           })
-          console.log('ini masuk upvote', response)
-          this.$router.push(`/answers/${this.$route.params.id}`)
-          this.getAnswer()
-        })
-        .catch(err => {
-          swal({
-            text: 'You must login first',
-            icon: 'error'
+          .catch(err => {
+            swal({
+              text: 'You must login first',
+              icon: 'error'
+            })
           })
-        })
+      }
     }
   }
 }

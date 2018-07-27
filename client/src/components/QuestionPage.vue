@@ -1,7 +1,7 @@
 <template>
 
   <div class="row ">
-    <div class="col s2">
+    <div class="col s6 m2 l2">
       <button @click="back" class="waves-effect waves-light btn-small">back</button>
 
     </div>
@@ -14,7 +14,7 @@
       <VueEditor v-model="question"></VueEditor>
     </div>
 
-    <div id="submittt" class="col s3 right">
+    <div id="submittt" class="col s6 m3 l3 right">
       <button @click="addquestion()" class="waves-effect waves-light btn-small">Submit</button>
     </div>
   </div>
