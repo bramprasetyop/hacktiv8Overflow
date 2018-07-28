@@ -37,8 +37,9 @@
               <a @click="downVote(answer._id,answer.userId,user._id)">
                 <i class="material-icons">thumb_down</i>
                 {{answer.votesDown.length}}</a>
-              <a v-if="answer.userId === user._id">Edit</a>
-              <a v-if="answer.userId === user._id">Delete</a>
+              <a v-if="answer.userId === user._id" class="waves-effect waves-light ">
+                <i class="material-icons left">edit</i>Edit</a>
+
             </div>
           </div>
         </div>
@@ -105,10 +106,7 @@ export default {
     },
     upVote(idAnswer, userID, idUser) {
       if (userID === idUser) {
-        swal({
-          text: 'cannot vote your answer',
-          icon: 'error'
-        })
+        alertify.error('Cannot vote your Answer!')
       } else {
         axios
           .put(
@@ -139,10 +137,7 @@ export default {
     },
     downVote(idAnswer, userID, idUser) {
       if (userID === idUser) {
-        swal({
-          text: 'cannot vote your answer',
-          icon: 'error'
-        })
+        alertify.error('Cannot vote your Answer!')
       } else {
         axios
           .put(

@@ -11,7 +11,10 @@ body {
 }
 
 #homee {
-  color: rgb(24, 17, 17);
+  color: rgb(161, 27, 27);
+ margin-top: 50px;
+ /* border: 2px solid red; */
+  
 }
 
 #bah {
@@ -19,7 +22,7 @@ body {
 }
 
 #centerbody {
-  margin-top: 15px;
+  /* margin-top: 10px; */
   /* border: 1px solid black; */
   height: auto;
   /* width: 80%; */
@@ -32,26 +35,17 @@ body {
   margin-top: 15px;
 }
 
-#rowquestion{
+#rowquestion {
   /* border: 1px solid white; */
   width: 50%;
 }
-
 
 #left {
   margin-top: 15px;
   /* border: 1px solid black; */
 }
 
-#boxright {
-  /* border: 1px solid black; */
-  background-color: rgb(249, 253, 253);
-}
 
-#boxleft {
-  /* border: 1px solid black; */
-  background-color: rgb(249, 253, 253);
-}
 
 #leftright {
   padding: 20px 20px;
@@ -79,8 +73,10 @@ body {
 #oit {
   /* border: 5px solid black; */
   border-radius: 5px;
-  margin-top: 10px;
-  background-color: rgb(222, 231, 231);
+  margin-top: 47px;
+  height: 150px;
+  /* background-color: rgb(222, 231, 231); */
+  background-image: url('https://cdn.shopify.com/s/files/1/0285/1316/products/ALT-0034-WALP-WP-1_c045ff40-676f-4be8-b466-187069233950_512x.jpg?v=1485470824')
 }
 
 .containers {
@@ -155,7 +151,7 @@ body {
 }
 
 a {
-  color: black;
+  color: rgb(238, 230, 230);
   font-size: 18px;
 }
 
@@ -186,6 +182,7 @@ a:hover {
 #boxleft {
   /* border: 1px solid black; */
   background-color: rgb(4, 128, 128);
+  margin-top: 34px;
 }
 
 #leftright {
@@ -199,11 +196,7 @@ a:hover {
   height: auto;
 }
 
-#oit {
-  /* border: 5px solid black; */
-  border-radius: 5px;
-  margin-top: 10px;
-}
+
 
 #itu {
   max-width: 100%;
@@ -268,7 +261,7 @@ a:hover {
 }
 
 a {
-  color: black;
+  color: rgb(247, 244, 244);
   font-size: 18px;
 }
 
@@ -362,18 +355,20 @@ button:hover {
   opacity: 0.8;
 }
 
-.card{
+.card {
   border-radius: 5px;
   margin-left: 30px;
 }
 
-#titlequestion{
+#titlequestion {
   margin-left: 50px;
   /* border: 2px solid white; */
 }
-#bottom-card{
+
+#bottom-card {
   border-radius: 5px;
 }
+
 /* Extra styles for the cancel button */
 
 .cancelbtn {
@@ -533,3 +528,7 @@ span.psw {
 /* #oyyy{
   margin-left: 10px;
 } */
+
+.ajs-message {
+  color: #f4f7f8;
+}

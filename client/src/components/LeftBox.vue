@@ -2,11 +2,20 @@
   <div>
 
     <div class="col s12 m12 l12" id="oit">
+      <div id="homee" class="row">
 
-      <router-link id="homee" to="/">
-        <h1 id="addQ" align="center">Stuck <br> Overflow</h1>
+        <h5 style="color:black" id="addQ" align="center">Welcome!
+          <h5 v-if="user.username">{{user.username.toUpperCase()}}</h5>
+        </h5>
+
+      </div>
+    </div>
+    t
+    <div id="tohome" class="row ">
+      <router-link to="/">
+        <a id="buttonhome" class="waves-effect waves-light">
+          <i class="material-icons left">home</i>HOME</a>
       </router-link>
-
     </div>
 
   </div>
@@ -22,20 +31,27 @@ export default {
     }
   },
   created() {
-    this.getAll()
+    this.getOneUser()
   },
   computed: {
-    ...mapState(['articles', 'article'])
+    ...mapState(['user'])
   },
   methods: {
-    ...mapActions(['getAll']),
-    logout() {
-      localStorage.clear()
-      this.$router.push('/')
-    }
+    ...mapActions(['getOneUser'])
   }
 }
 </script>
 
 <style>
+#tohome {
+  /* border: 1px solid black; */
+  border-radius: 10px;
+  width: 100%;
+  margin-left: 0px;
+  background-color: rgb(4, 80, 80);
+}
+
+#buttontohome {
+  color: white;
+}
 </style>
