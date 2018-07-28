@@ -7,7 +7,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     questions: [],
-    user: ''
+    user: '',
+   
 
   },
   mutations: {
@@ -23,6 +24,7 @@ export default new Vuex.Store({
     },
 
 
+
   },
   actions: {
     getAll({
@@ -35,9 +37,10 @@ export default new Vuex.Store({
         .then(({
           data
         }) => {
-          console.log("xxxxxxx",data.Overflow);
+          // console.log("xxxxxxx", data.Overflow);
           payload = data.Overflow
           commit("SET_QUESTION", payload)
+          
         })
         .catch(err => {
           console.log(err.message);
@@ -56,7 +59,7 @@ export default new Vuex.Store({
         .then(({
           data
         }) => {
-          console.log("xxxxxxx", data.users);
+          // console.log("xxxxxxx", data.users);
           payload = data.users
           commit("SET_USER", payload)
         })

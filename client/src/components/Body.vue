@@ -24,10 +24,11 @@
               <router-link :to="`/answers/${question._id}`">
                 <a>Answers</a>
               </router-link>
+              <router-link :to="`/editquestion/${question._id}`">
+                <a v-if="question.userId === user._id">Edit</a>
+              </router-link>
 
-              <a v-if="question.userId === user._id">Edit</a>
-
-              <a v-if="question.userId === user._id">Delete</a>
+              <a @click="deleteQuestion(question._id)" v-if="question.userId === user._id">Delete</a>
 
             </div>
           </div>
@@ -75,6 +76,34 @@ export default {
       } else {
         this.$router.push('/addquestion')
       }
+    },
+    deleteQuestion(id) {
+      swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this Question!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          swal('Poof! Your Question has been deleted!', {
+            icon: 'success'
+          })
+
+          axios
+            .delete(`http://localhost:3000/home/questions/${id}`, {
+              headers: {
+                token: localStorage.getItem('token')
+              }
+            })
+            .then(response => {
+              console.log('berhasil', response)
+              this.getAll()
+            })
+        } else {
+          swal('Your Question is safe!')
+        }
+      })
     }
   }
 }

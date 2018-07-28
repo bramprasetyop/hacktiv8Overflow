@@ -59,11 +59,40 @@ function deleteOverflow(req, res) {
       })
     })
 }
+
 function getOneOverflow(req, res) {
   Overflow.findOne({_id:req.params.id})
     .then(Overflow => {
       res.status(200).json({
         message: 'get one Overflow',
+        Overflow
+      })
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'failed',
+        err
+      })
+    })
+}
+
+function editOverflow(req, res) {
+  let id={
+    _id:req.params.id
+  }
+
+  let obj={
+    title:req.body.title,
+    content : req.body.content
+  }
+
+  Overflow.findOneAndUpdate(id,obj)
+    .then(Overflow => {
+      console.log(Overflow);
+      
+      
+      res.status(200).json({
+        message: 'edit one Overflow success',
         Overflow
       })
     })
@@ -83,5 +112,6 @@ module.exports = {
   newOverflow,
   getOverflow,
   deleteOverflow,
-  getOneOverflow
+  getOneOverflow,
+  editOverflow
 };

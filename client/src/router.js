@@ -7,6 +7,8 @@ import Signup from './views/Signup.vue'
 import Question from './views/Question.vue'
 import Answer from './views/Answer.vue'
 import AnswerAdd from './views/AddAnswer.vue'
+import EditQuestion from './views/EditQuestion.vue'
+
 
 
 
@@ -49,6 +51,11 @@ export default new Router({
       path: '/addanswer/:id',
       name: 'AddAnswer',
       component: AnswerAdd
+    },
+    {
+      path: '/editquestion/:id',
+      name: 'edit question',
+      component: EditQuestion
     }
   ],
   mode: 'history'
