@@ -30,6 +30,7 @@
 
               <p v-html="answer.content" style="text-align:left">{{answer.content}}</p>
             </div>
+
             <div id="bottom-card" class="card-action black">
               <a @click="upVote(answer._id,answer.userId,user._id)">
                 <i class="material-icons">thumb_up</i>
@@ -37,28 +38,64 @@
               <a @click="downVote(answer._id,answer.userId,user._id)">
                 <i class="material-icons">thumb_down</i>
                 {{answer.votesDown.length}}</a>
-              <a v-if="answer.userId === user._id" class="waves-effect waves-light ">
+
+              <a @click="showModal(answer._id,answer.content)" v-if="answer.userId === user._id" class="waves-effect waves-light ">
                 <i class="material-icons left">edit</i>Edit</a>
 
             </div>
+
           </div>
+
         </div>
 
       </div>
     </div>
+    <!-- ======================================================== -->
+    <div>
+      <modal v-if="show">
+        <transition name="modal">
+          <div class="modal-mask">
+            <div class="modal-wrapper">
+              <div class="modal-container">
+                <span>
+                  <h5>Edit Answer</h5>
+                </span>
+                <VueEditor v-model="editAnswer"> </VueEditor>
+              </div>
+              <div class="modal-footer">
+                <div id="rowmodal" class="row">
+                  <div class="col s2 right">
+                    <button href="" id="buttonmodal" class="modal-default-button" @click="closeModal(answerId,editAnswer)">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </modal>
+    </div>
+    <!-- ========================================================== -->
   </div>
 </template>
 <script>
 import axios from 'axios'
-
+import { VueEditor } from 'vue2-editor'
 import { mapActions, mapState } from 'vuex'
 
 export default {
+  components: {
+    VueEditor
+  },
   data() {
     return {
       question: '',
       answers: [],
-      posting: false
+      posting: false,
+      show: false,
+      editAnswer: '',
+      answerId: ''
     }
   },
   created() {
@@ -76,6 +113,31 @@ export default {
 
   methods: {
     ...mapActions(['getAll', 'getOneUser']),
+    showModal(id, content) {
+      this.editAnswer = content
+      this.answerId = id
+      this.show = true
+    },
+    closeModal(idEdit, contentEdit) {
+      console.log('==================', idEdit)
+      console.log('xxxxxxxxxxxxxxxxxx', contentEdit)
+
+      let obj = {
+        content: contentEdit
+      }
+
+      axios
+        .put(`http://localhost:3000/answers/one/${idEdit}`, obj, {
+          headers: { token: localStorage.getItem('token') }
+        })
+        .then(response => {
+          console.log(response)
+        })
+      this.show = false
+      this.getAnswer()
+      this.getOneQuestion()
+    },
+
     getOneQuestion() {
       axios
         .get(`http://localhost:3000/home/questions/${this.$route.params.id}`)
@@ -90,7 +152,7 @@ export default {
       axios
         .get(`http://localhost:3000/answers/${this.$route.params.id}`)
         .then(response => {
-          console.log('xxxxxxxxxxxxxxxxxxxxxx', response.data.Answer)
+          // console.log('xxxxxxxxxxxxxxxxxxxxxx', response.data.Answer)
           this.answers = response.data.Answer
         })
     },

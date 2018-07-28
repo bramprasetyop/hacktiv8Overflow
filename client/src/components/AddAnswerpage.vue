@@ -24,6 +24,7 @@
 
 
 <script>
+
 import { VueEditor } from 'vue2-editor'
 import axios from 'axios'
 
@@ -57,6 +58,7 @@ export default {
     }
   }
 }
+
 </script>
 
 

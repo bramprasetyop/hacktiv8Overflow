@@ -17,6 +17,12 @@ import EditQuestion from './views/EditQuestion.vue'
 
 
 
+
+
+
+
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -57,6 +63,8 @@ export default new Router({
       name: 'edit question',
       component: EditQuestion
     }
+
+
   ],
   mode: 'history'
 })
