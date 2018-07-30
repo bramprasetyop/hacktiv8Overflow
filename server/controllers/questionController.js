@@ -8,7 +8,7 @@ function newOverflow(req, res) {
     title:req.body.title,
     content: req.body.content,
     votes:[],
-    answerId:[],
+    OverflowId:[],
     userId:decoded.id
     
   }
@@ -104,6 +104,48 @@ function editOverflow(req, res) {
     })
 }
 
+function editUpOneQuestion(req, res) {
+  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+
+  Overflow.findById(req.params.id)
+    .then(Overflow => {
+      Overflow.votesUp.push(decoded.id)
+      Overflow.save()
+      res.status(200).json({
+        message: 'update Up vote',
+        Overflow
+      })
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'failed',
+        err
+      })
+    })
+}
+
+function editDownOneQuestion(req, res) {
+  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+
+  Overflow.findById(req.params.id)
+    .then(Overflow => {
+      Overflow.votesDown.push(decoded.id)
+      Overflow.save()
+      res.status(200).json({
+        message: 'update Down vote',
+        Overflow
+      })
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'failed',
+        err
+      })
+    })
+}
+
+
+
 
 
 
@@ -113,5 +155,7 @@ module.exports = {
   getOverflow,
   deleteOverflow,
   getOneOverflow,
-  editOverflow
+  editOverflow,
+  editUpOneQuestion,
+  editDownOneQuestion
 };

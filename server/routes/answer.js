@@ -7,7 +7,8 @@ const {
   deleteAnswer,
   getOneAnswer,
   editUpOneAnswer,
-  editDownOneAnswer
+  editDownOneAnswer,
+  editOneAnswer
 } = require("../controllers/answerController");
 
 
@@ -22,5 +23,6 @@ router
   .get('/answers/:id', getOneAnswer)
   .put('/answers/:id', logincheck, editUpOneAnswer)
   .put('/answers/down/:id', logincheck, editDownOneAnswer)
+  .put('/answers/one/:id',logincheck,editOneAnswer)
 
 module.exports = router;

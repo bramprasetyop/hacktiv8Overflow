@@ -123,6 +123,29 @@ function editDownOneAnswer(req, res) {
     })
 }
 
+function editOneAnswer(req, res) {
+  let id = {
+    _id: req.params.id
+  }
+
+  let objAnswer = {
+    content: req.body.content
+  }
+  Answer.findByIdAndUpdate(id, objAnswer)
+    .then(answer => {
+      res.status(200).json({
+        message: 'success update answer',
+        answer
+      })
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'failed',
+        err
+      })
+    })
+}
+
 
 
 
@@ -133,5 +156,6 @@ module.exports = {
   deleteAnswer,
   getOneAnswer,
   editUpOneAnswer,
-  editDownOneAnswer
+  editDownOneAnswer,
+  editOneAnswer
 };

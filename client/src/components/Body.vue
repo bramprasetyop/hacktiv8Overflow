@@ -24,6 +24,12 @@
               <router-link :to="`/answers/${question._id}`">
                 <a>Answers</a>
               </router-link>
+              <a @click="upVote(question._id,question.userId)">
+                <i class="material-icons">thumb_up</i>{{question.votesUp.length}}
+              </a>
+              <a @click="downVote(question._id,question.userId)">
+                <i class="material-icons">thumb_down</i>{{question.votesDown.length}}
+              </a>
               <router-link :to="`/editquestion/${question._id}`">
                 <a v-if="question.userId === user._id">Edit</a>
               </router-link>
@@ -104,6 +110,56 @@ export default {
           swal('Your Question is safe!')
         }
       })
+    },
+    upVote(id, qid) {
+      let obj = {
+        votesUp: this.user._id
+      }
+      console.log('=============', obj)
+
+      if (!this.user._id) {
+        alertify.error('You must login first!')
+      } else if (this.user._id === qid) {
+        alertify.error('Cannot vote your question!')
+      } else {
+        axios
+          .put(`http://localhost:3000/home/questions/up/${id}`, obj, {
+            headers: {
+              token: localStorage.getItem('token')
+            }
+          })
+          .then(response => {
+            console.log('berhasil', response)
+            this.$router.push('/')
+            this.getAll()
+            alertify.success('Thank you!')
+          })
+      }
+    },
+    downVote(id, qid) {
+      let obj = {
+        votesDown: this.user._id
+      }
+      console.log('=============', obj)
+
+      if (!this.user._id) {
+        alertify.error('You must login first!')
+      } else if (this.user._id === qid) {
+        alertify.error('Cannot vote your question!')
+      } else {
+        axios
+          .put(`http://localhost:3000/home/questions/down/${id}`, obj, {
+            headers: {
+              token: localStorage.getItem('token')
+            }
+          })
+          .then(response => {
+            console.log('berhasil', response)
+            this.$router.push('/')
+            this.getAll()
+            alertify.success('Thank you!')
+          })
+      }
     }
   }
 }
