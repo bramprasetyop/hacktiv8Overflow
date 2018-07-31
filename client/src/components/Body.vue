@@ -60,6 +60,10 @@ export default {
       this.posting = true
     } else {
       this.posting = false
+      this.$router.push('/login')
+      this.$router.push('/signup')
+      this.$router.push('/')
+      
     }
   },
   watch: {

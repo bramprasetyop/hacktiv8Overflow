@@ -132,10 +132,14 @@ export default {
         })
         .then(response => {
           console.log(response)
+          swal({
+            text: 'Update Success',
+            icon: 'success'
+          })
+          this.show = false
+          this.getAnswer()
+          this.getOneQuestion()
         })
-      this.show = false
-      this.getAnswer()
-      this.getOneQuestion()
     },
 
     getOneQuestion() {
