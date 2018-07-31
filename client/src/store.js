@@ -32,7 +32,7 @@ export default new Vuex.Store({
     }, payload) {
       axios({
           method: "get",
-          url: "http://localhost:3000/home/questions"
+          url: "https://api-hacktiv.bramaprasetyo.co/home/questions"
         })
         .then(({
           data
@@ -51,7 +51,7 @@ export default new Vuex.Store({
     }, payload) {
       axios({
           method: "get",
-          url: "http://localhost:3000/home/users",
+          url: "https://api-hacktiv.bramaprasetyo.co/home/users",
           headers: {
             token: localStorage.getItem('token')
           }

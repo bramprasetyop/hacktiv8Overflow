@@ -127,7 +127,7 @@ export default {
       }
 
       axios
-        .put(`http://localhost:3000/answers/one/${idEdit}`, obj, {
+        .put(`https://api-hacktiv.bramaprasetyo.co/answers/one/${idEdit}`, obj, {
           headers: { token: localStorage.getItem('token') }
         })
         .then(response => {
@@ -144,7 +144,7 @@ export default {
 
     getOneQuestion() {
       axios
-        .get(`http://localhost:3000/home/questions/${this.$route.params.id}`)
+        .get(`https://api-hacktiv.bramaprasetyo.co/home/questions/${this.$route.params.id}`)
         .then(response => {
           // console.log('=============',response.data.Overflow);
 
@@ -154,7 +154,7 @@ export default {
     },
     getAnswer() {
       axios
-        .get(`http://localhost:3000/answers/${this.$route.params.id}`)
+        .get(`https://api-hacktiv.bramaprasetyo.co/answers/${this.$route.params.id}`)
         .then(response => {
           // console.log('xxxxxxxxxxxxxxxxxxxxxx', response.data.Answer)
           this.answers = response.data.Answer
@@ -176,7 +176,7 @@ export default {
       } else {
         axios
           .put(
-            `http://localhost:3000/answers/${idAnswer}`,
+            `https://api-hacktiv.bramaprasetyo.co/answers/${idAnswer}`,
             {},
             {
               headers: {
@@ -207,7 +207,7 @@ export default {
       } else {
         axios
           .put(
-            `http://localhost:3000/answers/down/${idAnswer}`,
+            `https://api-hacktiv.bramaprasetyo.co/answers/down/${idAnswer}`,
             {},
             {
               headers: {

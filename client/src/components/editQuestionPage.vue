@@ -54,7 +54,7 @@ export default {
         content: questionUpdate
       }
       axios
-        .put(`http://localhost:3000/home/questions/${id}`, obj, {
+        .put(`https://api-hacktiv.bramaprasetyo.co/home/questions/${id}`, obj, {
           headers: { token: localStorage.getItem('token') }
         })
         .then(response => {

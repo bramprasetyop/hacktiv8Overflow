@@ -58,7 +58,7 @@ export default {
         password: this.password
       }
       axios
-        .post('http://localhost:3000/login', obj)
+        .post('https://api-hacktiv.bramaprasetyo.co/login', obj)
         .then(response => {
           // console.log(response);
 
@@ -103,7 +103,7 @@ export default {
           }
 
           axios
-            .post('http://localhost:3000/loginWithFb', account)
+            .post('https://api-hacktiv.bramaprasetyo.co/loginWithFb', account)
             .then(response => {
               // console.log(response.data.token);
               // this.$router.push('/login')

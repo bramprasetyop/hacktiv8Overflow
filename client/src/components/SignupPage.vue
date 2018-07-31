@@ -58,7 +58,7 @@ export default {
         password: this.password
       }
       axios
-        .post('http://localhost:3000', obj)
+        .post('https://api-hacktiv.bramaprasetyo.co', obj)
         .then(response => {
           // console.log(response);
 

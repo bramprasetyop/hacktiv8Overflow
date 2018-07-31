@@ -101,7 +101,7 @@ export default {
           })
 
           axios
-            .delete(`http://localhost:3000/home/questions/${id}`, {
+            .delete(`https://api-hacktiv.bramaprasetyo.co/home/questions/${id}`, {
               headers: {
                 token: localStorage.getItem('token')
               }
@@ -127,7 +127,7 @@ export default {
         alertify.error('Cannot vote your question!')
       } else {
         axios
-          .put(`http://localhost:3000/home/questions/up/${id}`, obj, {
+          .put(`https://api-hacktiv.bramaprasetyo.co/home/questions/up/${id}`, obj, {
             headers: {
               token: localStorage.getItem('token')
             }
@@ -152,7 +152,7 @@ export default {
         alertify.error('Cannot vote your question!')
       } else {
         axios
-          .put(`http://localhost:3000/home/questions/down/${id}`, obj, {
+          .put(`https://api-hacktiv.bramaprasetyo.co/home/questions/down/${id}`, obj, {
             headers: {
               token: localStorage.getItem('token')
             }
