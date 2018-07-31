@@ -43,7 +43,7 @@ export default new Vuex.Store({
           
         })
         .catch(err => {
-          console.log(err.message);
+          console.log(err);
         })
     },
     getOneUser({
@@ -64,7 +64,7 @@ export default new Vuex.Store({
           commit("SET_USER", payload)
         })
         .catch(err => {
-          console.log(err.message);
+          console.log(err);
         })
     }
 

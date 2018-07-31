@@ -1,6 +1,7 @@
 const User = require("../model/userModel");
 const bcrypt = require("bcryptjs");
 let saltRounds = 10;
+var jwt = require("jsonwebtoken");
 
 // ============= tambahan npm install --save express-validator =========
 
@@ -8,7 +9,7 @@ const {
   check,
   validationResult
 } = require("express-validator/check");
-var jwt = require("jsonwebtoken");
+
 
 // ============= tambahan npm install --save express-validator =========
 
@@ -89,20 +90,31 @@ function loginUser(req, res) {
 
 
 function getUser(req, res) {
-  var decoded = jwt.verify(req.headers.token,process.env.SECRET_KEY)
-  User.findOne({_id:decoded.id})
-    .then(users => {
-      res.status(200).json({
-        message: 'get One user',
-        users
-      })
+  if (!req.headers.hasOwnProperty('token')) {
+    res.json({
+      message: 'no authorization'
     })
-    .catch(err => {
-      res.status(400).json({
-        message: 'failed',
-        err
+  } else {
+    var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+
+    User.findOne({
+        _id: decoded.id
       })
-    })
+      .then(users => {
+        res.status(200).json({
+          message: 'get One user',
+          users
+        })
+      })
+      .catch(err => {
+        res.status(400).json({
+          message: 'failed',
+          err
+        })
+      })
+  }
+
+
 }
 
 
