@@ -63,7 +63,6 @@ export default {
       this.$router.push('/login')
       this.$router.push('/signup')
       this.$router.push('/')
-      
     }
   },
   watch: {
@@ -101,11 +100,14 @@ export default {
           })
 
           axios
-            .delete(`https://api-hacktiv.bramaprasetyo.co/home/questions/${id}`, {
-              headers: {
-                token: localStorage.getItem('token')
+            .delete(
+              `https://api-hacktiv.bramaprasetyo.co/home/questions/${id}`,
+              {
+                headers: {
+                  token: localStorage.getItem('token')
+                }
               }
-            })
+            )
             .then(response => {
               console.log('berhasil', response)
               this.getAll()
@@ -121,17 +123,21 @@ export default {
       }
       console.log('=============', obj)
 
-      if (!this.user._id) {
+      if (!localStorage.hasOwnProperty('token')) {
         alertify.error('You must login first!')
       } else if (this.user._id === qid) {
         alertify.error('Cannot vote your question!')
       } else {
         axios
-          .put(`https://api-hacktiv.bramaprasetyo.co/home/questions/up/${id}`, obj, {
-            headers: {
-              token: localStorage.getItem('token')
+          .put(
+            `https://api-hacktiv.bramaprasetyo.co/home/questions/up/${id}`,
+            obj,
+            {
+              headers: {
+                token: localStorage.getItem('token')
+              }
             }
-          })
+          )
           .then(response => {
             console.log('berhasil', response)
             this.$router.push('/')
@@ -146,17 +152,21 @@ export default {
       }
       console.log('=============', obj)
 
-      if (!this.user._id) {
+      if (!localStorage.hasOwnProperty('token')) {
         alertify.error('You must login first!')
       } else if (this.user._id === qid) {
         alertify.error('Cannot vote your question!')
       } else {
         axios
-          .put(`https://api-hacktiv.bramaprasetyo.co/home/questions/down/${id}`, obj, {
-            headers: {
-              token: localStorage.getItem('token')
+          .put(
+            `https://api-hacktiv.bramaprasetyo.co/home/questions/down/${id}`,
+            obj,
+            {
+              headers: {
+                token: localStorage.getItem('token')
+              }
             }
-          })
+          )
           .then(response => {
             console.log('berhasil', response)
             this.$router.push('/')

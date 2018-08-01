@@ -6,21 +6,18 @@
       <div id="homee" class="row">
 
         <h5 style="color:black" id="addQ" align="center">Welcome!
-          <h5 v-if="user.username">{{user.username.toUpperCase()}}</h5>
         </h5>
+        <h5 v-if="user.username">{{user.username.toUpperCase()}}</h5>
 
       </div>
-          <div id="tohome" class="row ">
+      <div id="tohome" class="row ">
         <router-link to="/">
           <a id="buttonhome" class="waves-effect waves-light">
             <i class="material-icons left">home</i>HOME</a>
         </router-link>
-      
 
+      </div>
     </div>
-    </div>
-
-
 
   </div>
 </template>
