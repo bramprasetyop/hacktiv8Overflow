@@ -101,7 +101,7 @@ export default {
 
           axios
             .delete(
-              `https://api-hacktiv.bramaprasetyo.co/home/questions/${id}`,
+              `http://localhost:3000/home/questions/${id}`,
               {
                 headers: {
                   token: localStorage.getItem('token')
@@ -130,7 +130,7 @@ export default {
       } else {
         axios
           .put(
-            `https://api-hacktiv.bramaprasetyo.co/home/questions/up/${id}`,
+            `http://localhost:3000/home/questions/up/${id}`,
             obj,
             {
               headers: {
@@ -159,7 +159,7 @@ export default {
       } else {
         axios
           .put(
-            `https://api-hacktiv.bramaprasetyo.co/home/questions/down/${id}`,
+            `http://localhost:3000/home/questions/down/${id}`,
             obj,
             {
               headers: {

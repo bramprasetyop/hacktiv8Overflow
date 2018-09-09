@@ -46,7 +46,7 @@ export default {
         content: this.question
       }
       axios
-        .post('https://api-hacktiv.bramaprasetyo.co/home', obj, {
+        .post('http://localhost:3000/home', obj, {
           headers: { token: localStorage.getItem('token') }
         })
         .then(response => {
