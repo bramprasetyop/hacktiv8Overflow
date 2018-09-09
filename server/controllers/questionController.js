@@ -1,16 +1,14 @@
-const Overflow = require("../model/questionModel");
-const jwt = require("jsonwebtoken")
+const Overflow = require('../model/questionModel')
+const jwt = require('jsonwebtoken')
 function newOverflow(req, res) {
-
-  var decoded = jwt.verify(req.headers.token,process.env.SECRET_KEY)
+  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
 
   let addOverflow = {
-    title:req.body.title,
+    title: req.body.title,
     content: req.body.content,
-    votes:[],
-    OverflowId:[],
-    userId:decoded.id
-    
+    votes: [],
+    OverflowId: [],
+    userId: decoded.id
   }
 
   Overflow.create(addOverflow)
@@ -29,7 +27,7 @@ function newOverflow(req, res) {
 }
 
 function getOverflow(req, res) {
-  Overflow.find()
+  Overflow.find({})
     .then(Overflow => {
       res.status(200).json({
         message: 'get Overflow',
@@ -61,7 +59,7 @@ function deleteOverflow(req, res) {
 }
 
 function getOneOverflow(req, res) {
-  Overflow.findOne({_id:req.params.id})
+  Overflow.findOne({ _id: req.params.id })
     .then(Overflow => {
       res.status(200).json({
         message: 'get one Overflow',
@@ -77,20 +75,19 @@ function getOneOverflow(req, res) {
 }
 
 function editOverflow(req, res) {
-  let id={
-    _id:req.params.id
+  let id = {
+    _id: req.params.id
   }
 
-  let obj={
-    title:req.body.title,
-    content : req.body.content
+  let obj = {
+    title: req.body.title,
+    content: req.body.content
   }
 
-  Overflow.findOneAndUpdate(id,obj)
+  Overflow.findOneAndUpdate(id, obj)
     .then(Overflow => {
-      console.log(Overflow);
-      
-      
+      console.log(Overflow)
+
       res.status(200).json({
         message: 'edit one Overflow success',
         Overflow
@@ -105,50 +102,56 @@ function editOverflow(req, res) {
 }
 
 function editUpOneQuestion(req, res) {
-  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+  if (!req.headers.hasOwnProperty('token')) {
+    res.json({
+      message: 'no authorization'
+    })
+  } else {
+    var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
 
-  Overflow.findById(req.params.id)
-    .then(Overflow => {
-      Overflow.votesUp.push(decoded.id)
-      Overflow.save()
-      res.status(200).json({
-        message: 'update Up vote',
-        Overflow
+    Overflow.findById(req.params.id)
+      .then(Overflow => {
+        Overflow.votesUp.push(decoded.id)
+        Overflow.save()
+        res.status(200).json({
+          message: 'update Up vote',
+          Overflow
+        })
       })
-    })
-    .catch(err => {
-      res.status(400).json({
-        message: 'failed',
-        err
+      .catch(err => {
+        res.status(400).json({
+          message: 'failed',
+          err
+        })
       })
-    })
+  }
 }
 
 function editDownOneQuestion(req, res) {
-  var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
+  if (!req.headers.hasOwnProperty('token')) {
+    res.json({
+      message: 'no authorization'
+    })
+  } else {
+    var decoded = jwt.verify(req.headers.token, process.env.SECRET_KEY)
 
-  Overflow.findById(req.params.id)
-    .then(Overflow => {
-      Overflow.votesDown.push(decoded.id)
-      Overflow.save()
-      res.status(200).json({
-        message: 'update Down vote',
-        Overflow
+    Overflow.findById(req.params.id)
+      .then(Overflow => {
+        Overflow.votesDown.push(decoded.id)
+        Overflow.save()
+        res.status(200).json({
+          message: 'update Down vote',
+          Overflow
+        })
       })
-    })
-    .catch(err => {
-      res.status(400).json({
-        message: 'failed',
-        err
+      .catch(err => {
+        res.status(400).json({
+          message: 'failed',
+          err
+        })
       })
-    })
+  }
 }
-
-
-
-
-
-
 
 module.exports = {
   newOverflow,
@@ -158,4 +161,4 @@ module.exports = {
   editOverflow,
   editUpOneQuestion,
   editDownOneQuestion
-};
+}
